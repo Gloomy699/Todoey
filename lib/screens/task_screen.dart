@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 
-const primaryColor = Colors.lightBlueAccent;
-const secondaryColor = Colors.white;
+import '../constans.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -10,7 +10,11 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: primaryColor,
       floatingActionButton: FloatingActionButton(
-        onPressed: (),
+        onPressed: () {
+          // AddTaskScreen();
+          showModalBottomSheet(
+              context: context, builder: (context) => AddTaskScreen());
+        },
         backgroundColor: primaryColor,
         child: Icon(
           Icons.add,
