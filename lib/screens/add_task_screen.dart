@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constans.dart';
 
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
+
+// ignore: must_be_immutable
 class AddTaskScreen extends StatelessWidget {
+  String newTaskTitle;
+
+  AddTaskScreen({required this.newTaskTitle});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +40,13 @@ class AddTaskScreen extends StatelessWidget {
                 ),
               ),
               TextField(
-                  autofocus: true,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20.0)),
+                autofocus: true,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20.0),
+                onChanged: (newText) {
+                  newTaskTitle = newText;
+                },
+              ),
               SizedBox(
                 height: 25.0,
               ),
@@ -42,7 +54,11 @@ class AddTaskScreen extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: primaryColor,
                 ),
-                onPressed: null,
+                onPressed: () {
+                  Provider.of<TaskData>(context, listen: false)
+                      .addTask(newTaskTitle);
+                  Navigator.pop(context);
+                },
                 child: Text(
                   'Add',
                   style: TextStyle(
