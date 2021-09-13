@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todoey/models/task_data.dart';
 import 'package:todoey/screens/add_task_screen.dart';
+import 'package:todoey/screens/welcome_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'package:provider/provider.dart';
 
 import '../constans.dart';
 
 class TasksScreen extends StatelessWidget {
+  static String id = 'task_screen';
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +39,21 @@ class TasksScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        alignment: Alignment.centerRight,
+                        icon: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          _auth.signOut();
+                          Navigator.pushNamed(context, WelcomeScreen.id);
+                        }),
+                  ],
+                ),
                 CircleAvatar(
                   backgroundColor: secondaryColor,
                   radius: 30.0,

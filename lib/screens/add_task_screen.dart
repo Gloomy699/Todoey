@@ -3,6 +3,10 @@ import 'package:todoey/constans.dart';
 
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+
+final _firestore = FirebaseFirestore.instance;
 
 // ignore: must_be_immutable
 class AddTaskScreen extends StatelessWidget {
@@ -55,8 +59,10 @@ class AddTaskScreen extends StatelessWidget {
                   backgroundColor: primaryColor,
                 ),
                 onPressed: () {
-                  Provider.of<TaskData>(context, listen: false)
-                      .addTask(newTaskTitle);
+                  // _firestore.collection('list').add({
+                  //   Provider.of<TaskData>(context, listen: false)
+                  //       .addTask(newTaskTitle)
+                  // });
                   Navigator.pop(context);
                 },
                 child: Text(
