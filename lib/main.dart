@@ -8,7 +8,7 @@ import 'package:todoey/screens/welcome_screen.dart';
 import 'package:todoey/screens/login_screen.dart';
 import 'package:todoey/screens/registration_screen.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -31,15 +31,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ChangeNotifierProvider(
-//       create: (BuildContext context) => TaskData(),
-//       child: MaterialApp(
-//         home: TasksScreen(),
-//       ),
-//     );
-//   }
-// }
