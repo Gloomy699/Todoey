@@ -7,11 +7,6 @@ import 'package:todoey/models/task_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// final _firestore = FirebaseFirestore.instance
-//     .collection('Users')
-//     .doc(FirebaseAuth.instance.currentUser!.uid)
-//     .collection('newTaskTitle');
-
 // ignore: must_be_immutable
 class AddTaskScreen extends StatelessWidget {
   String newTaskTitle;
@@ -64,6 +59,7 @@ class AddTaskScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
+
                   Provider.of<TaskData>(context, listen: false)
                       .addTask(newTaskTitle);
 
@@ -71,7 +67,10 @@ class AddTaskScreen extends StatelessWidget {
                       .collection('Users')
                       .doc(FirebaseAuth.instance.currentUser!.uid)
                       .collection('Notes');
-                  users.add({'Note': newTaskTitle, 'isDone': false});
+                  users.add({
+                    'Note': newTaskTitle,
+                    'isDone': false,
+                  });
                 },
                 child: Text(
                   'Add',
