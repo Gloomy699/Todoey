@@ -3,10 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:todoey/models/task_data.dart';
+
 import 'package:todoey/screens/task_screen.dart';
 import 'package:todoey/screens/welcome_screen.dart';
-import 'package:todoey/screens/login_screen.dart';
-import 'package:todoey/screens/registration_screen.dart';
+import 'package:todoey/screens/login/login_screen.dart';
+import 'package:todoey/screens/registration/registration_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

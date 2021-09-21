@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:todoey/widgets/task_tile.dart';
 
-// final Function checkboxCallback;
-// final longPressCallback;
-
 final _firestore = FirebaseFirestore.instance;
 
 class TaskStream extends StatelessWidget {
@@ -33,8 +30,18 @@ class TaskStream extends StatelessWidget {
             TaskTile(
               taskTitle: note['Note'],
               isChecked: note['isDone'],
-              checkboxCallback: () {},
+
+              checkboxCallback: (value) {
+                value = true;
+              },
               longPressCallback: () {},
+
+              // checkboxCallback: (checkboxState) {
+              //   taskData.updateTaskStatus(task);
+              // },
+              // longPressCallback: () {
+              //   taskData.deleteTask(task);
+              // },
             ),
           );
         }

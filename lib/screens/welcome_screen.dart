@@ -1,8 +1,8 @@
 import 'package:todoey/components/round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:todoey/constans.dart';
-import 'login_screen.dart';
-import 'registration_screen.dart';
+import 'login/login_screen.dart';
+import 'registration/registration_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {

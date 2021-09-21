@@ -1,20 +1,20 @@
-import 'package:todoey/components/round_button.dart';
-import 'package:todoey/screens/task_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:todoey/constans.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:todoey/components/round_button.dart';
+import 'package:todoey/screens/login/login_controller.dart';
+import 'package:todoey/screens/task_screen.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  static String id = 'registration_screen';
+class LoginScreen extends StatefulWidget {
+  static String id = 'login_screen';
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
-  final _auth = FirebaseAuth.instance;
+class _LoginScreenState extends State<LoginScreen> {
+  final _controller = LoginController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool showSpinner = false;
-  late String email;
-  late String password;
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +47,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
-              keyboardType: TextInputType.emailAddress,
+              controller: _emailController,
               textAlign: TextAlign.center,
-              onChanged: (value) {
-                email = value;
-              },
               decoration:
                   textFieldDecoration.copyWith(hintText: 'Enter your email...'),
             ),
@@ -59,11 +56,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             TextField(
+              controller: _passwordController,
               obscureText: true,
               textAlign: TextAlign.center,
-              onChanged: (value) {
-                password = value;
-              },
               decoration: textFieldDecoration.copyWith(
                   hintText: 'Enter your pasword...'),
             ),
@@ -71,30 +66,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 24.0,
             ),
             RoundedButton(
-              title: 'Register',
-              colour: Colors.blueAccent,
+              title: 'Log in',
+              colour: Colors.lightBlueAccent,
               onPressed: () async {
                 setState(() {
                   showSpinner = true;
                 });
-                try {
-                  final newUser = await _auth.createUserWithEmailAndPassword(
-                      email: email, password: password);
-                  // ignore: unnecessary_null_comparison
-                  if (newUser != null) {
-                    Navigator.pushNamed(context, TasksScreen.id);
-                  }
-                  setState(() {
-                    showSpinner = false;
-                  });
-                } catch (e) {
-                  print(e);
-                }
+                _controller.signInWithEmailAndPassword(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                  navigateToTaskScreen: () async =>
+                      await Navigator.pushNamed(context, TasksScreen.id),
+                );
+                setState(() {
+                  showSpinner = false;
+                });
               },
             ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

@@ -5,7 +5,8 @@ class TaskTile extends StatelessWidget {
   final bool isChecked;
   final String taskTitle;
 
-  final Function checkboxCallback;
+  final void Function(bool) checkboxCallback;
+  // final Function checkboxCallback;
   final longPressCallback;
 
   TaskTile({
@@ -28,7 +29,8 @@ class TaskTile extends StatelessWidget {
         activeColor: primaryColor,
         value: isChecked,
         onChanged: (newValue) {
-          checkboxCallback(newValue);
+          checkboxCallback(newValue ?? false);
+          // checkboxCallback(newValue);
         },
       ),
     );

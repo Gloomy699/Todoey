@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constans.dart';
 
-import 'package:provider/provider.dart';
-import 'package:todoey/models/task_data.dart';
+// import 'package:provider/provider.dart';
+// import 'package:todoey/models/task_data.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -58,19 +58,18 @@ class AddTaskScreen extends StatelessWidget {
                   backgroundColor: primaryColor,
                 ),
                 onPressed: () {
-                  Navigator.pop(context);
-
-                  Provider.of<TaskData>(context, listen: false)
-                      .addTask(newTaskTitle);
+                  // Provider.of<TaskData>(context, listen: false)
+                  //     .addTask(newTaskTitle);
 
                   CollectionReference users = FirebaseFirestore.instance
                       .collection('Users')
                       .doc(FirebaseAuth.instance.currentUser!.uid)
                       .collection('Notes');
                   users.add({
-                    'Note': newTaskTitle,
                     'isDone': false,
+                    'Note': newTaskTitle,
                   });
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'Add',
@@ -87,3 +86,12 @@ class AddTaskScreen extends StatelessWidget {
     );
   }
 }
+
+// CollectionReference users = FirebaseFirestore.instance
+//     .collection('Users')
+//     .doc(FirebaseAuth.instance.currentUser!.uid)
+//     .collection('Notes')
+//   ..add({
+//     'Note': newTaskTitle,
+//     'isDone': false,
+//   });

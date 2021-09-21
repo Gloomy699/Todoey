@@ -1,23 +1,20 @@
-import 'package:todoey/constans.dart';
-import 'package:flutter/material.dart';
 import 'package:todoey/components/round_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todoey/screens/task_screen.dart';
-// import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:flutter/material.dart';
+import 'package:todoey/constans.dart';
+import 'package:todoey/screens/registration/registration_controller.dart';
 
-class LoginScreen extends StatefulWidget {
-  static String id = 'login_screen';
+class RegistrationScreen extends StatefulWidget {
+  static String id = 'registration_screen';
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _auth = FirebaseAuth.instance;
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _controller = RegistrationController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool showSpinner = false;
-
-  late String email;
-  late String password;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
+              controller: _emailController,
               textAlign: TextAlign.center,
-              onChanged: (value) {
-                email = value;
-              },
               decoration:
                   textFieldDecoration.copyWith(hintText: 'Enter your email...'),
             ),
@@ -60,11 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8.0,
             ),
             TextField(
+              controller: _passwordController,
               obscureText: true,
               textAlign: TextAlign.center,
-              onChanged: (value) {
-                password = value;
-              },
               decoration: textFieldDecoration.copyWith(
                   hintText: 'Enter your pasword...'),
             ),
@@ -72,25 +65,21 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 24.0,
             ),
             RoundedButton(
-              title: 'Log in',
-              colour: Colors.lightBlueAccent,
+              title: 'Register',
+              colour: Colors.blueAccent,
               onPressed: () async {
                 setState(() {
                   showSpinner = true;
                 });
-                try {
-                  final newUser = await _auth.signInWithEmailAndPassword(
-                      email: email, password: password);
-                  // ignore: unnecessary_null_comparison
-                  if (newUser != null) {
-                    Navigator.pushNamed(context, TasksScreen.id);
-                  }
-                  setState(() {
-                    showSpinner = false;
-                  });
-                } catch (e) {
-                  print(e);
-                }
+                _controller.createUserWithEmailAndPassword(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                  navigateToTaskScreen: () async =>
+                      await Navigator.pushNamed(context, TasksScreen.id),
+                );
+                setState(() {
+                  showSpinner = false;
+                });
               },
             ),
           ],
