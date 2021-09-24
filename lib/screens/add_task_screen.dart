@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constans.dart';
-
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
 
@@ -8,7 +7,9 @@ import 'package:todoey/models/task_data.dart';
 class AddTaskScreen extends StatelessWidget {
   String newTaskTitle;
 
-  AddTaskScreen({required this.newTaskTitle});
+  AddTaskScreen({
+    required this.newTaskTitle,
+  });
 
   @override
   Widget build(BuildContext context) {

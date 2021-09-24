@@ -31,7 +31,11 @@ class TasksScreen extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.only(
-                top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
+              top: 60.0,
+              left: 30.0,
+              right: 30.0,
+              bottom: 30.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -50,9 +54,10 @@ class TasksScreen extends StatelessWidget {
                 Text(
                   'Todoey',
                   style: TextStyle(
-                      fontSize: 50.0,
-                      fontWeight: FontWeight.w700,
-                      color: secondaryColor),
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.w700,
+                    color: secondaryColor,
+                  ),
                 ),
                 Text(
                   '${Provider.of<TaskData>(context).taskCount} Tasks',
