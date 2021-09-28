@@ -4,7 +4,7 @@ import 'package:todoey/constans.dart';
 class TaskTile extends StatelessWidget {
   final bool isChecked;
   final String taskTitle;
-  final Function checkboxCallback;
+  final void Function(bool?) checkboxCallback;
   final longPressCallback;
 
   TaskTile({
@@ -27,7 +27,7 @@ class TaskTile extends StatelessWidget {
       trailing: Checkbox(
         activeColor: primaryColor,
         value: isChecked,
-        onChanged: (newValue) => checkboxCallback(newValue),
+        onChanged: checkboxCallback,
       ),
     );
   }
