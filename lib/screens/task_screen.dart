@@ -3,7 +3,6 @@ import 'package:todoey/models/task_data.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'package:provider/provider.dart';
-
 import '../constans.dart';
 
 class TasksScreen extends StatelessWidget {
