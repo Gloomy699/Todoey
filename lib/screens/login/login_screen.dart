@@ -69,18 +69,18 @@ class _LoginScreenState extends State<LoginScreen> {
               title: 'Log in',
               colour: Colors.lightBlueAccent,
               onPressed: () async {
-                setState(() {
-                  showSpinner = true;
-                });
+                setState(
+                  () => showSpinner = true,
+                );
                 _controller.signInWithEmailAndPassword(
                   email: _emailController.text,
                   password: _passwordController.text,
                   navigateToTaskScreen: () async =>
                       await Navigator.pushNamed(context, TasksScreen.id),
                 );
-                setState(() {
-                  showSpinner = false;
-                });
+                setState(
+                  () => showSpinner = false,
+                );
               },
             ),
           ],

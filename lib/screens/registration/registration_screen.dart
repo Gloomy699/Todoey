@@ -68,18 +68,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               title: 'Register',
               colour: Colors.blueAccent,
               onPressed: () async {
-                setState(() {
-                  showSpinner = true;
-                });
+                setState(
+                  () => showSpinner = true,
+                );
                 _controller.createUserWithEmailAndPassword(
                   email: _emailController.text,
                   password: _passwordController.text,
                   navigateToTaskScreen: () async =>
                       await Navigator.pushNamed(context, TasksScreen.id),
                 );
-                setState(() {
-                  showSpinner = false;
-                });
+                setState(() => showSpinner = false);
               },
             ),
           ],

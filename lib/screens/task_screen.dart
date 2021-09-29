@@ -12,6 +12,7 @@ import '../constans.dart';
 class TasksScreen extends StatelessWidget {
   static String id = 'task_screen';
   final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +37,11 @@ class TasksScreen extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.only(
-                top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
+              top: 60.0,
+              left: 30.0,
+              right: 30.0,
+              bottom: 30.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
