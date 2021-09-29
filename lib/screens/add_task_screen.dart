@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constans.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey/models/task_data.dart';
+import 'package:todoey/models/task_cubit.dart';
 
 // ignore: must_be_immutable
 class AddTaskScreen extends StatelessWidget {
@@ -54,7 +54,7 @@ class AddTaskScreen extends StatelessWidget {
                   backgroundColor: primaryColor,
                 ),
                 onPressed: () {
-                  Provider.of<TaskData>(context, listen: false)
+                  Provider.of<TaskCubit>(context, listen: false)
                       .addTask(newTaskTitle);
                   Navigator.pop(context);
                 },
