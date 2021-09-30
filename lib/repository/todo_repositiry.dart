@@ -1,8 +1,8 @@
 import 'package:amplify_flutter/amplify.dart';
 import 'package:todoey/models/Todo.dart';
 
-class TaskRepository {
-  Future<List<Todo>> getTasks() async {
+class TodoRepository {
+  Future<List<Todo>> getTodos() async {
     try {
       final todos = await Amplify.DataStore.query(Todo.classType);
       return todos;
@@ -11,19 +11,19 @@ class TaskRepository {
     }
   }
 
-  Future<void> addTask(String title) async {
-    final newTask = Todo(title: title, isComplete: false);
+  Future<void> createTodo(String title) async {
+    final newTodo = Todo(title: title, isComplete: false);
     try {
-      await Amplify.DataStore.save(newTask);
+      await Amplify.DataStore.save(newTodo);
     } catch (e) {
       throw e;
     }
   }
 
-  void updateTaskStatus(Todo todo, bool isComplete) async {
-    final updateTask = todo.copyWith(isComplete: isComplete);
+  Future<void> updateTodoIsComplete(Todo todo, bool isComplete) async {
+    final updateTodo = todo.copyWith(isComplete: isComplete);
     try {
-      await Amplify.DataStore.save(updateTask);
+      await Amplify.DataStore.save(updateTodo);
     } catch (e) {
       throw e;
     }

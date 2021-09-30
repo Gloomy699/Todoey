@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoey/constans.dart';
-import 'package:provider/provider.dart';
-import 'package:todoey/models/task_cubit.dart';
+// import 'package:todoey/todo_cubit.dart';
 
-// ignore: must_be_immutable
-class AddTaskScreen extends StatelessWidget {
-  String newTaskTitle;
+class NewTodoView extends StatelessWidget {
+  const NewTodoView({
+    required void Function() onSave,
+  }) : _onSave = onSave;
 
-  AddTaskScreen({
-    required this.newTaskTitle,
-  });
+  final void Function() _onSave;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class AddTaskScreen extends StatelessWidget {
                 height: 20.0,
               ),
               Text(
-                'Add Task',
+                'Add Todo',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: primaryColor,
@@ -44,7 +43,7 @@ class AddTaskScreen extends StatelessWidget {
                 autofocus: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20.0),
-                onChanged: (newText) => newTaskTitle = newText,
+                decoration: InputDecoration(hintText: 'Enter todo title'),
               ),
               SizedBox(
                 height: 25.0,
@@ -54,9 +53,8 @@ class AddTaskScreen extends StatelessWidget {
                   backgroundColor: primaryColor,
                 ),
                 onPressed: () {
-                  Provider.of<TaskCubit>(context, listen: false)
-                      .addTask(newTaskTitle);
-                  Navigator.pop(context);
+                  _onSave();
+                  Navigator.of(context).pop();
                 },
                 child: Text(
                   'Add',

@@ -2,11 +2,11 @@ import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todoey/screens/task_screen.dart';
+import 'package:todoey/todos_view.dart';
 import 'package:todoey/widgets/loading_view.dart';
+import 'package:todoey/todo_cubit.dart';
 import 'amplifyconfiguration.dart';
 import 'models/ModelProvider.dart';
-import 'models/task_cubit.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,8 +28,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider(
-        create: (context) => TaskCubit(),
-        child: _amplifyConfigured ? TasksScreen() : LoadingView(),
+        create: (context) => TodoCubit()..getTodos(),
+        child: _amplifyConfigured ? TodosView() : LoadingView(),
       ),
     );
   }
@@ -41,11 +41,11 @@ class _MyAppState extends State<MyApp> {
     // Once Plugins are added, configure Amplify
     try {
       await Amplify.configure(amplifyconfig);
-      setState(() {
-        _amplifyConfigured = true;
-      });
     } catch (e) {
       print(e);
     }
+    setState(() {
+      _amplifyConfigured = true;
+    });
   }
 }
