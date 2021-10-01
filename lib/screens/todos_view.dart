@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoey/constans.dart';
-import 'package:todoey/widgets/empty_view.dart';
+import 'package:todoey/screens/empty_view.dart';
 import 'package:todoey/widgets/todos_list_view.dart';
-import 'package:todoey/todo_cubit.dart';
+import 'package:todoey/repository/todo_cubit.dart';
 import 'package:todoey/screens/add_task_view.dart';
-import 'widgets/loading_view.dart';
+import 'loading_view.dart';
 
 class TodosView extends StatefulWidget {
   @override
@@ -22,27 +22,27 @@ class _TodosViewState extends State<TodosView> {
         return Scaffold(
           backgroundColor: primaryColor,
           floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (_) => NewTodoView(
-                    onSave: () {
-                      BlocProvider.of<TodoCubit>(context)
-                          .createTodo(_titleController.text);
-                      _titleController.text = '';
-                    },
-                    titleController: _titleController,
-                  ),
-                );
-              }),
-          body: newMethod(state),
+            child: Icon(Icons.add),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (_) => NewTodoView(
+                  onSave: () {
+                    BlocProvider.of<TodoCubit>(context)
+                        .createTodo(_titleController.text);
+                  },
+                  titleController: _titleController,
+                ),
+              );
+            },
+          ),
+          body: todoScreenUpdate(state),
         );
       },
     );
   }
 
-  Widget newMethod(TodoState state) {
+  Widget todoScreenUpdate(TodoState state) {
     if (state is ListTodosSuccess) {
       return state.todos.isEmpty
           ? EmptyView()
@@ -112,6 +112,10 @@ class _TodosViewState extends State<TodosView> {
   }
 
   Widget exceptionView(Exception exception) {
-    return Center(child: Text(exception.toString()));
+    return Center(
+      child: Text(
+        exception.toString(),
+      ),
+    );
   }
 }

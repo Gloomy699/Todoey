@@ -51,11 +51,3 @@ class TodoCubit extends Cubit<TodoState> {
     getTodos();
   }
 }
-
-
-
-
-// void deleteTask(Task task) {
-//   _tasks.remove(task);
-//   notifyListeners();
-// }

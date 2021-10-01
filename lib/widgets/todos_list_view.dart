@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoey/models/Todo.dart';
-import 'package:todoey/todo_cubit.dart';
+import 'package:todoey/repository/todo_cubit.dart';
 
 class TodosListView extends StatelessWidget {
   const TodosListView({
