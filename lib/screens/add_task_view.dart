@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoey/constans.dart';
-// import 'package:todoey/todo_cubit.dart';
 
 class NewTodoView extends StatelessWidget {
   const NewTodoView({
     required void Function() onSave,
-  }) : _onSave = onSave;
+    required TextEditingController titleController,
+  })  : _onSave = onSave,
+        _titleController = titleController;
 
   final void Function() _onSave;
+  final TextEditingController _titleController;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,7 @@ class NewTodoView extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20.0),
                 decoration: InputDecoration(hintText: 'Enter todo title'),
+                controller: _titleController,
               ),
               SizedBox(
                 height: 25.0,
@@ -54,6 +56,7 @@ class NewTodoView extends StatelessWidget {
                 ),
                 onPressed: () {
                   _onSave();
+                  _titleController.text = '';
                   Navigator.of(context).pop();
                 },
                 child: Text(

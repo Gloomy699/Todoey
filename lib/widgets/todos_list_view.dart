@@ -5,9 +5,8 @@ import 'package:todoey/todo_cubit.dart';
 
 class TodosListView extends StatelessWidget {
   const TodosListView({
-    Key? key,
     required this.todos,
-  }) : super(key: key);
+  });
 
   final List<Todo> todos;
 
@@ -17,19 +16,24 @@ class TodosListView extends StatelessWidget {
       itemCount: todos.length,
       itemBuilder: (context, index) {
         final todo = todos[index];
-        return Card(
-          child: CheckboxListTile(
-            title: Text(
-              todo.title,
-              style: TextStyle(
-                decoration: todo.isComplete ? TextDecoration.lineThrough : null,
+        return ListTile(
+          onLongPress: () =>
+              BlocProvider.of<TodoCubit>(context).removeTodo(todo),
+          title: Card(
+            child: CheckboxListTile(
+              title: Text(
+                todo.title,
+                style: TextStyle(
+                  decoration:
+                      todo.isComplete ? TextDecoration.lineThrough : null,
+                ),
               ),
+              value: todo.isComplete,
+              onChanged: (newValue) {
+                BlocProvider.of<TodoCubit>(context)
+                    .updateTaskStatus(todo, newValue!);
+              },
             ),
-            value: todo.isComplete,
-            onChanged: (newValue) {
-              BlocProvider.of<TodoCubit>(context)
-                  .updateTaskStatus(todo, newValue!);
-            },
           ),
         );
       },

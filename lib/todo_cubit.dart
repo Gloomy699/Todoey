@@ -46,22 +46,14 @@ class TodoCubit extends Cubit<TodoState> {
     getTodos();
   }
 
-  // void deleteTask() {}
+  void removeTodo(Todo id) {
+    _todoRepo.removeTodo(id);
+    getTodos();
+  }
 }
 
 
-//   int get taskCount => _tasks.length;
 
-// void addTask(String newTaskTitle) {
-//   final task = Task(name: newTaskTitle);
-//   _tasks.add(task);
-//   notifyListeners();
-// }
-
-// void updateTaskStatus(Task task) {
-//   task.toggleDone();
-//   notifyListeners();
-// }
 
 // void deleteTask(Task task) {
 //   _tasks.remove(task);

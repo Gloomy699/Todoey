@@ -1,5 +1,6 @@
 import 'package:amplify_flutter/amplify.dart';
 import 'package:todoey/models/Todo.dart';
+// import 'package:todoey/widgets/todos_list_view.dart';
 
 class TodoRepository {
   Future<List<Todo>> getTodos() async {
@@ -29,12 +30,5 @@ class TodoRepository {
     }
   }
 
-  // Future<List<Todo>> deleteTask() async {
-  //   try {
-  //     final todos = await Amplify.DataStore.delete();
-  //     return;
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
+  void removeTodo(Todo id) => Amplify.DataStore.delete(id);
 }
