@@ -16,14 +16,16 @@ class TodosListView extends StatelessWidget {
       itemCount: todos.length,
       itemBuilder: (context, index) {
         final todo = todos[index];
-        return ListTile(
+        return GestureDetector(
           onLongPress: () =>
               BlocProvider.of<TodoCubit>(context).removeTodo(todo),
-          title: Card(
+          child: Card(
+            color: todo.isComplete ? Colors.greenAccent : Colors.red[200],
             child: CheckboxListTile(
               title: Text(
                 todo.title,
                 style: TextStyle(
+                  fontSize: 18.0,
                   decoration:
                       todo.isComplete ? TextDecoration.lineThrough : null,
                 ),

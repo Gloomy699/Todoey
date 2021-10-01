@@ -22,7 +22,10 @@ class _TodosViewState extends State<TodosView> {
         return Scaffold(
           backgroundColor: primaryColor,
           floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
+            backgroundColor: primaryColor,
+            child: Icon(
+              Icons.add,
+            ),
             onPressed: () {
               showModalBottomSheet(
                 context: context,

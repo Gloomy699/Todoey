@@ -7,12 +7,12 @@ class EmptyView extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
         top: 60.0,
-        left: 30.0,
-        right: 30.0,
-        bottom: 30.0,
+        // left: 20.0,
+        // right: 20.0,
+        // bottom: 20.0,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           CircleAvatar(
             backgroundColor: secondaryColor,
@@ -34,8 +34,23 @@ class EmptyView extends StatelessWidget {
               color: secondaryColor,
             ),
           ),
-          Center(
-            child: Text('No todos yet'),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: secondaryColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30.0),
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  'No todos yet',
+                  style: TextStyle(
+                    fontSize: 25.0,
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
