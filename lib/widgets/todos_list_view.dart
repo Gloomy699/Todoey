@@ -17,8 +17,29 @@ class TodosListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final todo = todos[index];
         return GestureDetector(
-          onLongPress: () =>
-              BlocProvider.of<TodoCubit>(context).removeTodo(todo),
+          onLongPress: () {
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext _) => AlertDialog(
+                title: const Text('Alert'),
+                content:
+                    const Text('Are you sure you want to delete the task?'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      BlocProvider.of<TodoCubit>(context).removeTodo(todo);
+                      Navigator.pop(context);
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              ),
+            );
+          },
           child: Card(
             color: todo.isComplete ? Colors.greenAccent : Colors.red[200],
             child: CheckboxListTile(
