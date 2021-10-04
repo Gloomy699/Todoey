@@ -22,19 +22,21 @@ class TodosListView extends StatelessWidget {
           onLongPress: () {
             showDialog<String>(
               context: context,
-              builder: (BuildContext _) => AlertDialog(
+              builder: (_) => AlertDialog(
                 title: const Text(
-                  'Alert',
+                  'Attention',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.red,
                   ),
                 ),
-                content:
-                    const Text('Are you sure you want to delete the task?'),
+                content: const Text(
+                  'Are you sure you want to delete the task?',
+                  textAlign: TextAlign.center,
+                ),
                 actions: <Widget>[
                   TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    onPressed: () => Navigator.pop(context),
                     child: const Text(
                       'Cancel',
                       style: TextStyle(color: Colors.red),
