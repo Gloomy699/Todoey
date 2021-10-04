@@ -30,11 +30,17 @@ class TaskStream extends StatelessWidget {
             TaskTile(
               taskTitle: note['Note'],
               isChecked: note['isDone'],
-
-              checkboxCallback: (value) {
-                value = true;
+              checkboxCallback: (note) {
+                note = true;
               },
-              longPressCallback: () {},
+              longPressCallback: () async {
+                _firestore
+                    .collection('Users')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .collection('Notes')
+                    .doc('note')
+                    .delete();
+              },
 
               // checkboxCallback: (checkboxState) {
               //   taskData.updateTaskStatus(task);

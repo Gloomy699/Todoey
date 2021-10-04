@@ -4,9 +4,8 @@ import 'package:todoey/constans.dart';
 class TaskTile extends StatelessWidget {
   final bool isChecked;
   final String taskTitle;
-
   final void Function(bool?) checkboxCallback;
-  final longPressCallback;
+  final void Function() longPressCallback;
 
   TaskTile({
     required this.isChecked,

@@ -64,6 +64,7 @@ class AddTaskScreen extends StatelessWidget {
                   users.add({
                     'isDone': false,
                     'Note': newTaskTitle,
+                    'timestamp': FieldValue.serverTimestamp(),
                   });
                   Navigator.pop(context);
                 },
