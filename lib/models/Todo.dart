@@ -20,7 +20,7 @@
 import 'package:amplify_datastore_plugin_interface/amplify_datastore_plugin_interface.dart';
 import 'package:flutter/foundation.dart';
 
-/// This is an auto generated class representing the Todo type in your schema.
+///** This is an auto generated class representing the Todo type in your schema. */
 @immutable
 class Todo extends Model {
   static const classType = const _TodoModelType();

@@ -1,3 +1,5 @@
+// ignore_for_file: dead_code
+
 /*
 * Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
@@ -35,7 +37,6 @@ class ModelProvider implements ModelProviderInterface {
         {
           return Todo.classType;
         }
-        // ignore: dead_code
         break;
       default:
         {
